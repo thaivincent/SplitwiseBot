@@ -1,7 +1,8 @@
 import discord
 from discord.ext import commands
+import config
 
-# Initializing the command prefix of the bot to be /
+# Initializing the command prefix of the bot to be $
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -17,10 +18,4 @@ async def on_ready():
 async def hello(ctx):
     await ctx.send("This is working")
 
-client.run("MTE1ODIyMzIyMTQwMTg1NDAyMg.GsrmSZ.Ta2AjyKpmoxPJGLV9FNt5BKZxeALVZ30PJyg8o")
-
-
-
-
-
-
+client.run(config.token)
