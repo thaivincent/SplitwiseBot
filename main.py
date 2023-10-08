@@ -2,25 +2,22 @@ import discord
 from discord.ext import commands
 import config
 
+
+# Setting permissions of the bot
+intents = discord.Intents.all()
+
 # Initializing the command prefix of the bot to be $
-
-intents = discord.Intents.default()
-intents.message_content = True
-
 client = commands.Bot (command_prefix = '$', intents=intents)
 
-role_exclude =  discord.utils.get()
-
-# Initialize the list of members in the group
-group_list=[]
-members = ctx.guild.members
-
-for i in members:
-    group_list.append(i.name)
-    print("added:" + i.name)
 
 @client.event
 async def on_ready():
+    # where server_guild is a class(Guild) and represents the server.
+    server_guild = client.get_guild(config.guild_id)
+    # This is a list of "Member" objects
+    global member_list 
+    member_list = server_guild.members
+
     print("Im ready!!")
     print("----------------")
 
@@ -30,7 +27,12 @@ async def hello(ctx):
 
 @client.command()
 async def list_members(ctx):
-    await ctx.send("List of members:")
-    await ctx.send(",".join(group_list))
+    # Adding all of the names of server members into a list
+    name_list = []
+    for i in member_list:
+        name_list.append(i.name)
+
+        
+    
 
 client.run(config.token)
