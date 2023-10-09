@@ -61,7 +61,3 @@ balance = {
 
 with open('balances.json', 'w') as json_file:
     json.dump(balance, json_file, indent=4)
-
-# Step 3: Load the JSON file back into a variable
-with open('balances.json', 'r') as json_file:
-    loaded_balance = json.load(json_file)

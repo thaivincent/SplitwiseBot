@@ -3,6 +3,10 @@ from discord.ext import commands
 import config
 import json
 
+with open ("C:\Users\vince\VS Code\Splitwise Bot\balances.json","w+") as balance:
+    loaded_balance = json.load(balance)
+
+
 # Setting permissions of the bot
 intents = discord.Intents.all()
 
@@ -26,9 +30,6 @@ class Balance:
     def totbal(self):
         return self.bal1 + self.bal2 + self.bal3 + self.bal4 + self.bal5 + self.bal6
     
-
-
-
 @client.event
 async def on_ready():
     global server_guild
@@ -58,6 +59,8 @@ async def list_members(ctx):
     await ctx.send(str(name_list)[1:-1])
     print(name_list)
 
-
+@client.command()
+async def bal(member: discord.Member):
+    
         
 client.run(config.token)
