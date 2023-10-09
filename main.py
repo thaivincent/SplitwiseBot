@@ -9,6 +9,8 @@ intents = discord.Intents.all()
 # Initializing the command prefix of the bot to be $
 client = commands.Bot (command_prefix = '$', intents=intents)
 
+# Initializing a an group of excluded members
+excluded_list=[]
 
 @client.event
 async def on_ready():
@@ -29,9 +31,9 @@ async def hello(ctx):
 async def list_members(ctx):
     # Adding all of the names of server members into a list
     name_list = []
-    for i in member_list:
+    for i in member_list  :
         name_list.append(i.name)
-
+    await ctx.send(str(name_list)[1:-1])
         
     
 
