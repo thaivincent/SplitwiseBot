@@ -31,8 +31,6 @@ def get_index (member, payee):
             return index
         else: index += 1
 
-
-
 @client.event
 async def on_ready():
     global server_guild
@@ -123,6 +121,22 @@ async def bal(ctx):
     else:
         await ctx.send("Please specify a valid member.")
     
+@client.command()
+async def owe(ctx):
+    message_content = ctx.message.content.split()
+    message_content = message_content[1:] # Getting rid of command
+
+    member_owed = message_content[0]
+    ammount_owed = message_content[1]
+
+    if ctx.author.name == member_owed:
+        await ctx.send("You cannot owe yourself money!")
+    elif member_owed not in name_list:
+        await ctx.send('Please enter a valid command. ($owe "member" "ammount")')
+    else:
+        await ctx.send("valid ")
+
+
 
 
 @client.command()
